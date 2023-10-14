@@ -3,6 +3,7 @@
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::get('/perfil/{id}', [PerfilController::class, 'get']);
 Route::post('/perfil', [PerfilController::class, 'create']);
 
 Route::get('/user/{id}', [UserController::class, 'get']);
+Route::get('/me', [UserController::class, 'me']);
 Route::get('/user', [UserController::class, 'list']);
 Route::delete('/user/{id}', [UserController::class, 'delete']);
 Route::put('/user/{id}', [UserController::class, 'edit']);

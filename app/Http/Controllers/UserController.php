@@ -11,6 +11,10 @@ class UserController extends Controller
         return User::all()->find($id);
     }
 
+    function me (Request $request) {
+        return $request->user();
+    }
+
     function list (Request $request) {
         $users = User::all();
         return $users->toArray();

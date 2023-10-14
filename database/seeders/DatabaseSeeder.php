@@ -29,24 +29,24 @@ class DatabaseSeeder extends Seeder
         //     'user_id'=> 1
         // ]);
 
-        Categoria::factory()->create([
-            'nm_categoria' => 'SUB-09',
-            'sn_ativo' => true
-        ]);
+        // Categoria::factory()->create([
+        //     'nm_categoria' => 'SUB-09',
+        //     'sn_ativo' => true
+        // ]);
 
-        Categoria::factory()->create([
-            'nm_categoria' => 'SUB-11',
-            'sn_ativo' => true
-        ]);
+        // Categoria::factory()->create([
+        //     'nm_categoria' => 'SUB-11',
+        //     'sn_ativo' => true
+        // ]);
 
-        Categoria::factory()->create([
-            'nm_categoria' => 'SUB-13',
-            'sn_ativo' => true
-        ]);
+        // Categoria::factory()->create([
+        //     'nm_categoria' => 'SUB-13',
+        //     'sn_ativo' => true
+        // ]);
 
-        Categoria::factory()->create([
-            'nm_categoria' => 'SUB-15',
-            'sn_ativo' => true
-        ]);
+        // Categoria::factory()->create([
+        //     'nm_categoria' => 'SUB-15',
+        //     'sn_ativo' => true
+        // ]);
     }
 }
