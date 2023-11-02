@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ChamadaTipoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -41,3 +42,9 @@ Route::get('/categoria', [CategoriaController::class, 'list']);
 Route::delete('/categoria/{id}', [CategoriaController::class, 'delete']);
 Route::put('/categoria/{id}', [CategoriaController::class, 'edit']);
 Route::post('/categoria', [CategoriaController::class, 'create']);
+
+Route::get('/chamadaTipo/{id}', [ChamadaTipoController::class, 'get']);
+Route::get('/chamadaTipo', [ChamadaTipoController::class, 'list']);
+Route::delete('/chamadaTipo/{id}', [ChamadaTipoController::class, 'delete']);
+Route::put('/chamadaTipo/{id}', [ChamadaTipoController::class, 'edit']);
+Route::post('/chamadaTipo', [ChamadaTipoController::class, 'create']);
