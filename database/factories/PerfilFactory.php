@@ -18,11 +18,8 @@ class PerfilFactory extends Factory
         $users = User::pluck('id')->toArray();
 
         return [
-            'nm_perfil' => fake()->name(),
-            'sn_ativo' => fake()->boolean(),
-            'user_id' => function () use ($users) {
-                return \Arr::random($users);
-            },
+            'perfil' => fake()->name(),
+            'ativo' => fake()->boolean()
         ];
     }
 

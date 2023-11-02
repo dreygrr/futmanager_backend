@@ -17,17 +17,20 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'futmanager',
-        //     'email' => 'futmanager@example.com',
-        //     'password' => '12345'
-        // ]);
+        Perfil::factory()->create([
+            'perfil' => 'administrador',
+            'ativo' => true
+        ]);
 
-        // Perfil::factory()->create([
-        //     'nm_perfil' => 'administrador',
-        //     'sn_ativo' => true,
-        //     'user_id'=> 1
-        // ]);
+        User::factory()->create([
+            'name' => 'futmanager',
+            'login' => 'futmanager@example.com',
+            'password' => '12345',
+            'perfil_id'=> '1',
+            'ativo'=> true,
+        ]);
+
+
 
         // Categoria::factory()->create([
         //     'nm_categoria' => 'SUB-09',

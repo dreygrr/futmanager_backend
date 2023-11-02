@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfils', function (Blueprint $table) {
+        Schema::create("perfils", function (Blueprint $table) {
             $table->id();
+            $table->string('perfil');
+            $table->boolean('ativo');
             $table->timestamps();
-            $table->string('nm_perfil');
-            $table->boolean('sn_ativo');
-            $table->foreignIdFor(User::class);
         });
     }
 

@@ -16,12 +16,7 @@ class Perfil extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nm_perfil',
-        'sn_ativo'
+        'perfil',
+        'ativo'
     ];
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }

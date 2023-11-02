@@ -29,22 +29,23 @@ class AtletaController extends Controller
     }
 
     function create (Request $request) {
-        $NovoAtleta = new Atleta();
-        $NovoAtleta->nm_atletaCompleto = $request->nm_atletaCompleto;
-        $NovoAtleta->nm_apelido = $request->nm_apelido;
-        $NovoAtleta->dt_nascimento = $request->dt_nascimento;
-        $NovoAtleta->nu_idade = $request->nu_idade;
-        $NovoAtleta->tp_genero = $request->tp_genero;
-        $NovoAtleta->nu_cpf = $request->nu_cpf;
-        $NovoAtleta->nu_rg = $request->nu_rg;
-        $NovoAtleta->nm_camiseta = $request->nm_camiseta;
-        $NovoAtleta->nu_camiseta = $request->nu_camiseta;
-        $NovoAtleta->nu_calcado = $request->nu_calcado;
-        $NovoAtleta->user_id = $request->user()->id;
-        $NovoAtleta->categoria_id = $request->categoria_id;
-        $NovoAtleta->sn_ativo = true;
-        $NovoAtleta->save();
-        return $NovoAtleta->toJson();
+        $atleta = new Atleta();
+        $atleta->nomeCompleto = $request->nomeCompleto;
+        $atleta->apelido = $request->apelido;
+        $atleta->dataNascimento = $request->dataNascimento;
+        $atleta->idade = $request->idade;
+        $atleta->genero = $request->genero;
+        $atleta->cpf = $request->cpf;
+        $atleta->rg = $request->rg;
+        $atleta->nomeUniforme = $request->nomeUniforme;
+        $atleta->numeroUniforme = $request->numeroUniforme;
+        $atleta->tamanhoUniforme = $request->tamanhoUniforme;
+        $atleta->numeroCalcado = $request->numeroCalcado;
+        $atleta->user_id = $request->user()->id;
+        $atleta->categoria_id = $request->categoria_id;
+        $atleta->ativo = true;
+        $atleta->save();
+        return $atleta->toJson();
     }
 
     function delete (Request $request, string $id) {
@@ -55,19 +56,20 @@ class AtletaController extends Controller
 
     function edit (Request $request, string $id) {
         $atleta = Atleta::find($id);
-        $atleta->nm_atletaCompleto = $request->nm_atletaCompleto;
-        $atleta->nm_apelido = $request->nm_apelido;
-        $atleta->dt_nascimento = $request->dt_nascimento;
-        $atleta->nu_idade = $request->nu_idade;
-        $atleta->tp_genero = $request->tp_genero;
-        $atleta->nu_cpf = $request->nu_cpf;
-        $atleta->nu_rg = $request->nu_rg;
-        $atleta->nm_camiseta = $request->nm_camiseta;
-        $atleta->nu_camiseta = $request->nu_camiseta;
-        $atleta->nu_calcado = $request->nu_calcado;
+        $atleta->nomeCompleto = $request->nomeCompleto;
+        $atleta->apelido = $request->apelido;
+        $atleta->dataNascimento = $request->dataNascimento;
+        $atleta->idade = $request->idade;
+        $atleta->genero = $request->genero;
+        $atleta->cpf = $request->cpf;
+        $atleta->rg = $request->rg;
+        $atleta->nomeUniforme = $request->nomeUniforme;
+        $atleta->numeroUniforme = $request->numeroUniforme;
+        $atleta->tamanhoUniforme = $request->tamanhoUniforme;
+        $atleta->numeroCalcado = $request->numeroCalcado;
         $atleta->user_id = $request->user()->id;
-        $atleta->categoria_id = $request->categoria()->id;
-        $atleta->sn_ativo = $request->sn_ativo;
+        $atleta->categoria_id = $request->categoria_id;
+        $atleta->ativo = $request->ativo;
         $atleta->save();
         return $atleta->toJson();
     }

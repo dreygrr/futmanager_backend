@@ -9,38 +9,33 @@ class PerfilController extends Controller
 {
     function get(Request $request, string $id)
     {
-        return Perfil::with(
-            array('user')
-        )->find($id)->toJson();
+        return Perfil::all()->find($id)->toJson();
     }
 
     function list(Request $request)
     {
-        // $perPage = 10;
-        // $page = $request->input('page', 1);
-        // $previsaoDeGastos = PrevisaoDeGastos::with(
-        //     array('valor', 'empreendimento', 'projeto', 'centroDeCusto', 'departamento')
-        // )->paginate($perPage, ['*'], 'page', $page);
+        $perPage = 10;
+        $page = $request->input('page', 1);
+        $perfils = Perfil::orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
 
-        // $response = [
-        //     'data' => $previsaoDeGastos->items(),
-        //     'pagination' => [
-        //         'current_page' => $previsaoDeGastos->currentPage(),
-        //         'total_pages' => $previsaoDeGastos->lastPage(),
-        //         'total_records' => $previsaoDeGastos->total(),
-        //     ],
-        // ];
+        $response = [
+            'data' => $perfils->items(),
+            'pagination' => [
+                'current_page' => $perfils->currentPage(),
+                'total_pages' => $perfils->lastPage(),
+                'total_records' => $perfils->total(),
+            ],
+        ];
 
-        // return response()->json($response);
+        return response()->json($response);
     }
 
     function create (Request $request) {
-        $newUser = new Perfil();
-        $newUser->nm_perfil =$request->nm_perfil;
-        $newUser->sn_ativo =$request->sn_ativo;
-        $newUser->user_id =$request->user()->id;
-        $newUser->save();
-        return $newUser->toJson();
+        $novoPerfil = new Perfil();
+        $novoPerfil->perfil =$request->perfil;
+        $novoPerfil->ativo =$request->ativo;
+        $novoPerfil->save();
+        return $novoPerfil->toJson();
     }
 
     // function delete (Request $request, string $id) {

@@ -19,10 +19,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nm_usuario',
-        'nm_login',
-        'pw_senha',
-        'sn_ativo'
+        'name',
+        'login',
+        'password',
+        'ativo'
     ];
 
     /**
@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'pw_senha',
+        'password',
         'remember_token',
     ];
 
@@ -41,12 +41,12 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'pw_senha' => 'hashed',
+        'password' => 'hashed',
     ];
 
     public function findForPassport(string $username): User
     {
-        return $this->where('nm_login', $username)->first();
+        return $this->where('login', $username)->first();
     }
 
     /**
@@ -54,6 +54,6 @@ class User extends Authenticatable
      */
     public function validateForPassportPasswordGrant(string $password): bool
     {
-        return Hash::check($password, $this->pw_senha);
+        return Hash::check($password, $this->password);
     }
 }

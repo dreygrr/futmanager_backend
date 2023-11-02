@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +14,8 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->boolean('sn_ativo');
-            $table->string('nm_categoria');
+            $table->string('categoria');
+            $table->boolean('ativo');
         });
     }
 

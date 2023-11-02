@@ -17,19 +17,20 @@ class Atleta extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nm_atletaCompleto',
-        'nm_apelido',
-        'dt_nascimento',
-        'nu_idade',
-        'tp_genero',
-        'nu_cpf',
-        'nu_rg',
-        'nm_camiseta',
-        'nu_camiseta',
-        'nu_calcado',
+        'nomeCompleto',
+        'apelido',
+        'dataNascimento',
+        'idade',
+        'genero',
+        'cpf',
+        'rg',
+        'nomeUniforme',
+        'numeroUniforme',
+        'tamanhoUniforme',
+        'numeroCalcado',
         'user_id',
         'categoria_id',
-        'sn_ativo'
+        'ativo'
     ];
 
     public function categoria(): BelongsTo

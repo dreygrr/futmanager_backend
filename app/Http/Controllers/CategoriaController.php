@@ -30,8 +30,8 @@ class CategoriaController extends Controller
 
     function create (Request $request) {
         $NovaCategoria = new Categoria();
-        $NovaCategoria->nm_categoria =$request->nm_categoria;
-        $NovaCategoria->sn_ativo =$request->sn_ativo;
+        $NovaCategoria->categoria =$request->categoria;
+        $NovaCategoria->ativo =$request->ativo;
         $NovaCategoria->save();
         return $NovaCategoria->toJson();
     }
@@ -44,8 +44,8 @@ class CategoriaController extends Controller
 
     function edit (Request $request, string $id) {
         $categoria = Categoria::find($id);
-        $categoria->nm_categoria =$request->nm_categoria;
-        $categoria->sn_ativo =$request->sn_ativo;
+        $categoria->categoria =$request->categoria;
+        $categoria->ativo =$request->ativo;
         $categoria->save();
         return $categoria->toJson();
     }

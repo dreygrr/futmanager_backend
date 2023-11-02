@@ -15,7 +15,7 @@ class Categoria extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nm_categoria',
-        'sn_ativo'
+        'categoria',
+        'ativo'
     ];
 }

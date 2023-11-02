@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/perfil/{id}', [PerfilController::class, 'get']);
+Route::get('/perfil', [PerfilController::class, 'list']);
 Route::post('/perfil', [PerfilController::class, 'create']);
 
 Route::get('/user/{id}', [UserController::class, 'get']);
