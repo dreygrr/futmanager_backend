@@ -14,7 +14,7 @@ class CategoriaController extends Controller
     function list (Request $request) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $categorias = Categoria::orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
+        $categorias = Categoria::orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $categorias->items(),
