@@ -16,7 +16,7 @@ class PerfilController extends Controller
     {
         $perPage = 10;
         $page = $request->input('page', 1);
-        $perfils = Perfil::orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
+        $perfils = Perfil::orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $perfils->items(),
@@ -31,25 +31,24 @@ class PerfilController extends Controller
     }
 
     function create (Request $request) {
-        $novoPerfil = new Perfil();
-        $novoPerfil->perfil =$request->perfil;
-        $novoPerfil->ativo =$request->ativo;
-        $novoPerfil->save();
-        return $novoPerfil->toJson();
+        $perfil = new Perfil();
+        $perfil->perfil =$request->perfil;
+        $perfil->ativo =$request->ativo;
+        $perfil->save();
+        return $perfil->toJson();
     }
 
-    // function delete (Request $request, string $id) {
-    //     $user = User::all()->find($id);
-    //     $user->delete();
-    //     return $user->toJson();
-    // }
+    function delete (Request $request, string $id) {
+        $perfil = Perfil::all()->find($id);
+        $perfil->delete();
+        return $perfil->toJson();
+    }
 
-    // function edit (Request $request, string $id) {
-    //     $user = User::all()->find($id);
-    //     $user->name =$request->name;
-    //     $user->email =$request->email;
-    //     $user->password =$request->password;
-    //     $user->save();
-    //     return $user->toJson();
-    // }
+    function edit (Request $request, string $id) {
+        $perfil = Perfil::all()->find($id);
+        $perfil->perfil =$request->perfil;
+        $perfil->ativo =$request->ativo;
+        $perfil->save();
+        return $perfil->toJson();
+    }
 }
