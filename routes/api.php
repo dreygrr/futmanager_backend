@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertenciaTipoController;
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ChamadaTipoController;
@@ -48,3 +49,9 @@ Route::get('/chamadaTipo', [ChamadaTipoController::class, 'list']);
 Route::delete('/chamadaTipo/{id}', [ChamadaTipoController::class, 'delete']);
 Route::put('/chamadaTipo/{id}', [ChamadaTipoController::class, 'edit']);
 Route::post('/chamadaTipo', [ChamadaTipoController::class, 'create']);
+
+Route::get('/advertenciaTipo/{id}', [AdvertenciaTipoController::class, 'get']);
+Route::get('/advertenciaTipo', [AdvertenciaTipoController::class, 'list']);
+Route::delete('/advertenciaTipo/{id}', [AdvertenciaTipoController::class, 'delete']);
+Route::put('/advertenciaTipo/{id}', [AdvertenciaTipoController::class, 'edit']);
+Route::post('/advertenciaTipo', [AdvertenciaTipoController::class, 'create']);
