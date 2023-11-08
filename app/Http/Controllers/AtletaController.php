@@ -28,6 +28,23 @@ class AtletaController extends Controller
         return response()->json($response);
     }
 
+    function sub (Request $request, string $id) {
+        $perPage = $request->input('size', 10);
+        $page = $request->input('page', 1);
+        $atletas = Atleta::where('categoria_id', $id)->paginate($perPage, ['*'], 'page', $page);
+
+        $response = [
+            'data' => $atletas->items(),
+            'pagination' => [
+                'current_page' => $atletas->currentPage(),
+                'total_pages' => $atletas->lastPage(),
+                'total_records' => $atletas->total(),
+            ],
+        ];
+
+        return response()->json($response);
+    }
+
     function create (Request $request) {
         $atleta = new Atleta();
         $atleta->nomeCompleto = $request->nomeCompleto;
