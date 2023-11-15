@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('categoria');
+            $table->longText('caminhoImagem');
             $table->boolean('ativo');
         });
     }

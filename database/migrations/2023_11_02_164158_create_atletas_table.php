@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('numeroUniforme');
             $table->string('tamanhoUniforme');
             $table->integer('numeroCalcado');
+            $table->longText('caminhoImagem');
             $table->foreignIdFor(User::class)->nullable()->constrained();
             $table->foreignIdFor(Categoria::class)->constrained();
             $table->boolean('ativo');

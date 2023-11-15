@@ -29,8 +29,16 @@ class CategoriaController extends Controller
     }
 
     function create (Request $request) {
+
+        $dadosImagem = $request->validate([
+            'imagem' => 'required|string',
+        ]);
+
+        $imagemBase64 = $dadosImagem['imagem'];
+
         $NovaCategoria = new Categoria();
         $NovaCategoria->categoria =$request->categoria;
+        $NovaCategoria->caminhoImagem = $imagemBase64;
         $NovaCategoria->ativo =$request->ativo;
         $NovaCategoria->save();
         return $NovaCategoria->toJson();
@@ -43,8 +51,15 @@ class CategoriaController extends Controller
     }
 
     function edit (Request $request, string $id) {
+        $dadosImagem = $request->validate([
+            'imagem' => 'required|string',
+        ]);
+
+        $imagemBase64 = $dadosImagem['imagem'];
+
         $categoria = Categoria::find($id);
         $categoria->categoria =$request->categoria;
+        $categoria->caminhoImagem = $imagemBase64;
         $categoria->ativo =$request->ativo;
         $categoria->save();
         return $categoria->toJson();
