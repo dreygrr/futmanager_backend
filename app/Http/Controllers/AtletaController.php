@@ -46,18 +46,32 @@ class AtletaController extends Controller
     }
 
     function create (Request $request) {
+        if ($request->imagem) {
+            $dadosImagem = $request->validate([
+                'imagem' => 'required|string',
+            ]);
+
+            $imagemBase64 = $dadosImagem['imagem'];
+        } else {
+            $imagemBase64 = null;
+        }
+
         $atleta = new Atleta();
         $atleta->nomeCompleto = $request->nomeCompleto;
         $atleta->apelido = $request->apelido;
         $atleta->dataNascimento = $request->dataNascimento;
         $atleta->idade = $request->idade;
         $atleta->genero = $request->genero;
+        $atleta->posicao = $request->posicao;
         $atleta->cpf = $request->cpf;
         $atleta->rg = $request->rg;
+        $atleta->peso = $request->peso;
+        $atleta->altura = $request->altura;
         $atleta->nomeUniforme = $request->nomeUniforme;
         $atleta->numeroUniforme = $request->numeroUniforme;
         $atleta->tamanhoUniforme = $request->tamanhoUniforme;
         $atleta->numeroCalcado = $request->numeroCalcado;
+        $atleta->caminhoImagem = $imagemBase64;
         $atleta->user_id = $request->user()->id;
         $atleta->categoria_id = $request->categoria_id;
         $atleta->ativo = true;
@@ -72,18 +86,32 @@ class AtletaController extends Controller
     }
 
     function edit (Request $request, string $id) {
+        if ($request->imagem) {
+            $dadosImagem = $request->validate([
+                'imagem' => 'required|string',
+            ]);
+
+            $imagemBase64 = $dadosImagem['imagem'];
+        } else {
+            $imagemBase64 = null;
+        }
+
         $atleta = Atleta::find($id);
         $atleta->nomeCompleto = $request->nomeCompleto;
         $atleta->apelido = $request->apelido;
         $atleta->dataNascimento = $request->dataNascimento;
         $atleta->idade = $request->idade;
         $atleta->genero = $request->genero;
+        $atleta->posicao = $request->posicao;
         $atleta->cpf = $request->cpf;
         $atleta->rg = $request->rg;
+        $atleta->peso = $request->peso;
+        $atleta->altura = $request->altura;
         $atleta->nomeUniforme = $request->nomeUniforme;
         $atleta->numeroUniforme = $request->numeroUniforme;
         $atleta->tamanhoUniforme = $request->tamanhoUniforme;
         $atleta->numeroCalcado = $request->numeroCalcado;
+        $atleta->caminhoImagem = $imagemBase64;
         $atleta->user_id = $request->user()->id;
         $atleta->categoria_id = $request->categoria_id;
         $atleta->ativo = $request->ativo;
