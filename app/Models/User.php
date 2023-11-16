@@ -56,4 +56,13 @@ class User extends Authenticatable
     {
         return Hash::check($password, $this->password);
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d/m/Y'); // H:i:s
+    }
+
+    public function perfil() {
+        return $this->belongsTo(Perfil::class, 'perfil_id');
+    }
 }

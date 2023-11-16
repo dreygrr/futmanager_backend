@@ -31,6 +31,7 @@ Route::get('/me', [UserController::class, 'me']);
 Route::get('/user', [UserController::class, 'list']);
 Route::delete('/user/{id}', [UserController::class, 'delete']);
 Route::put('/user/{id}', [UserController::class, 'edit']);
+Route::post('/user', [UserController::class, 'create']);
 
 Route::get('/atleta/{id}', [AtletaController::class, 'get']);
 Route::get('/atleta', [AtletaController::class, 'list']);

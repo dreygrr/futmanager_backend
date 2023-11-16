@@ -16,15 +16,29 @@ class UserController extends Controller
     }
 
     function list (Request $request) {
-        $users = User::all();
-        return $users->toArray();
+        $perPage = 10;
+        $page = $request->input('page', 1);
+        $users = User::with('perfil')->orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
+
+        $response = [
+            'data' => $users->items(),
+            'pagination' => [
+                'current_page' => $users->currentPage(),
+                'total_pages' => $users->lastPage(),
+                'total_records' => $users->total(),
+            ],
+        ];
+
+        return response()->json($response);
     }
 
     function create (Request $request) {
         $newUser = new User();
         $newUser->name =$request->name;
-        $newUser->email =$request->email;
+        $newUser->login =$request->login;
         $newUser->password =$request->password;
+        $newUser->ativo =$request->ativo;
+        $newUser->perfil_id =$request->perfil_id;
         $newUser->save();
         return $newUser->toJson();
     }
@@ -38,8 +52,12 @@ class UserController extends Controller
     function edit (Request $request, string $id) {
         $user = User::all()->find($id);
         $user->name =$request->name;
-        $user->email =$request->email;
-        $user->password =$request->password;
+        $user->login =$request->login;
+        if ($request->password) {
+            $user->password =$request->password;
+        }
+        $user->ativo =$request->ativo;
+        $user->perfil_id =$request->perfil_id;
         $user->save();
         return $user->toJson();
     }
