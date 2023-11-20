@@ -74,4 +74,19 @@ class ResponsavelController extends Controller
         $responsavel->save();
         return $responsavel->toJson();
     }
+
+    function atletas(Request $request, string $id)
+    {
+        // Encontre o responsável pelo ID
+        $responsavel = Responsavel::findOrFail($id);
+
+        \Log::info('Responsavel:', $responsavel->toArray());
+
+        // Obtenha todos os atletas vinculados ao responsável
+        $atletas = $responsavel->atletas;
+
+        \Log::info('Atletas:', $atletas->toArray());
+
+        return response()->json($atletas);
+    }
 }

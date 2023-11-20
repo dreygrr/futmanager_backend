@@ -4,30 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Responsavel extends Model
+class AtletaResponsavel extends Model
 {
     use HasFactory;
 
-    /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'nomeCompleto',
-        'dataNascimento',
-        'cpf',
-        'rg',
-        'ativo',
-        'user_id',
+        'atleta_id',
+        'responsavel_id',
     ];
-
-    public function user(): HasOne
-    {
-        return $this->hasOne(User::class);
-    }
 
     public function atletas()
     {

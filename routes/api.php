@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdvertenciaTipoController;
 use App\Http\Controllers\AtletaController;
+use App\Http\Controllers\AtletaResponsavelController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ChamadaTipoController;
 use App\Http\Controllers\PerfilController;
@@ -64,3 +65,9 @@ Route::get('/responsavel', [ResponsavelController::class, 'list']);
 Route::delete('/responsavel/{id}', [ResponsavelController::class, 'delete']);
 Route::put('/responsavel/{id}', [ResponsavelController::class, 'edit']);
 Route::post('/responsavel', [ResponsavelController::class, 'create']);
+Route::get('/responsavelAtletas/{id}', [ResponsavelController::class, 'atletas']);
+
+Route::get('/atletaResponsavel/{id}', [AtletaResponsavelController::class, 'get']);
+Route::get('/atletaResponsavel_responsavelList/{id}', [AtletaResponsavelController::class, 'listResponsavel']);
+Route::delete('/atletaResponsavel/{id}', [AtletaResponsavelController::class, 'delete']);
+Route::post('/atletaResponsavel', [AtletaResponsavelController::class, 'associarResponsavel']);
