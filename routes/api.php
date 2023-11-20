@@ -5,6 +5,7 @@ use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ChamadaTipoController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ResponsavelController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,3 +58,9 @@ Route::get('/advertenciaTipo', [AdvertenciaTipoController::class, 'list']);
 Route::delete('/advertenciaTipo/{id}', [AdvertenciaTipoController::class, 'delete']);
 Route::put('/advertenciaTipo/{id}', [AdvertenciaTipoController::class, 'edit']);
 Route::post('/advertenciaTipo', [AdvertenciaTipoController::class, 'create']);
+
+Route::get('/responsavel/{id}', [ResponsavelController::class, 'get']);
+Route::get('/responsavel', [ResponsavelController::class, 'list']);
+Route::delete('/responsavel/{id}', [ResponsavelController::class, 'delete']);
+Route::put('/responsavel/{id}', [ResponsavelController::class, 'edit']);
+Route::post('/responsavel', [ResponsavelController::class, 'create']);
