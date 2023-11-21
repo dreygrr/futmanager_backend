@@ -4,10 +4,12 @@ use App\Http\Controllers\AdvertenciaTipoController;
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\AtletaResponsavelController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ChamadaController;
 use App\Http\Controllers\ChamadaTipoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ResponsavelController;
 use App\Http\Controllers\UserController;
+use App\Models\Chamada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -71,3 +73,10 @@ Route::get('/atletaResponsavel/{id}', [AtletaResponsavelController::class, 'get'
 Route::get('/atletaResponsavel_responsavelList/{id}', [AtletaResponsavelController::class, 'listResponsavel']);
 Route::delete('/atletaResponsavel/{id}', [AtletaResponsavelController::class, 'delete']);
 Route::post('/atletaResponsavel', [AtletaResponsavelController::class, 'associarResponsavel']);
+
+Route::get('/chamada/{id}', [ChamadaController::class, 'get']);
+Route::get('/presenca/{id}', [ChamadaController::class, 'presenca']);
+Route::get('/chamada', [ChamadaController::class, 'list']);
+Route::delete('/chamada/{id}', [ChamadaController::class, 'delete']);
+Route::put('/chamada/{id}', [ChamadaController::class, 'edit']);
+Route::post('/chamada', [ChamadaController::class, 'create']);
