@@ -33,4 +33,9 @@ class Responsavel extends Model
     {
         return $this->belongsToMany(Atleta::class, 'atleta_responsavels', 'responsavel_id', 'atleta_id');
     }
+
+    public function getDataNascimentoAttribute($value)
+    {
+        return \Carbon\Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y'); // H:i:s
+    }
 }

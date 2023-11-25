@@ -14,7 +14,7 @@ class ResponsavelController extends Controller
     function list (Request $request) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $responsaveis = Responsavel::orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
+        $responsaveis = Responsavel::with('atletas')->orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $responsaveis->items(),

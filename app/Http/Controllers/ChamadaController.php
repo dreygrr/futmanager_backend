@@ -15,7 +15,7 @@ class ChamadaController extends Controller
     function list (Request $request) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $categorias = Chamada::orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
+        $categorias = Chamada::with(['chamadaTipo', 'categoria', 'user'])->orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $categorias->items(),

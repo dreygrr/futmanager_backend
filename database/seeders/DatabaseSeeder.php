@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Categoria;
 use App\Models\Perfil;
 use App\Models\User;
+use App\Models\Atleta;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,19 +18,20 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Perfil::factory()->create([
-            'perfil' => 'administrador',
-            'ativo' => true
-        ]);
+        // Perfil::factory()->create([
+        //     'perfil' => 'administrador',
+        //     'ativo' => true
+        // ]);
 
-        User::factory()->create([
-            'name' => 'futmanager',
-            'login' => 'futmanager@example.com',
-            'password' => '12345',
-            'perfil_id'=> '1',
-            'ativo'=> true,
-        ]);
+        // User::factory()->create([
+        //     'name' => 'futmanager',
+        //     'login' => 'futmanager@example.com',
+        //     'password' => '12345',
+        //     'perfil_id'=> '1',
+        //     'ativo'=> true,
+        // ]);
 
+        Atleta::factory(10)->create();
 
 
         // Categoria::factory()->create([

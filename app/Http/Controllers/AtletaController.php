@@ -31,7 +31,7 @@ class AtletaController extends Controller
     function sub (Request $request, string $id) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $atletas = Atleta::where('categoria_id', $id)->paginate($perPage, ['*'], 'page', $page);
+        $atletas = Atleta::where('categoria_id', $id)->orderBy('numeroUniforme', 'asc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $atletas->items(),
@@ -43,6 +43,14 @@ class AtletaController extends Controller
         ];
 
         return response()->json($response);
+    }
+
+    function chamadaSub (Request $request, string $id) {
+        $atletas = Atleta::where('categoria_id', $id)
+        ->orderBy('numeroUniforme', 'asc')
+        ->get();
+
+        return response()->json(['data' => $atletas]);
     }
 
     function create (Request $request) {
