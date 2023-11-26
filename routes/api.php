@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertenciaController;
 use App\Http\Controllers\AdvertenciaTipoController;
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\AtletaResponsavelController;
@@ -85,3 +86,9 @@ Route::post('/chamada', [ChamadaController::class, 'create']);
 
 Route::post('/presencasAtletas', [PresencasController::class, 'registrarPresencas']);
 Route::get('/presencasAtletasView/{id}', [PresencasController::class, 'visualizarPresencas']);
+
+Route::get('/advertencia/{id}', [AdvertenciaController::class, 'get']);
+Route::get('/advertencia', [AdvertenciaController::class, 'list']);
+Route::delete('/advertencia/{id}', [AdvertenciaController::class, 'delete']);
+Route::put('/advertencia/{id}', [AdvertenciaController::class, 'edit']);
+Route::post('/advertencia', [AdvertenciaController::class, 'create']);
