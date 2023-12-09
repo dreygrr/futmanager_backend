@@ -49,6 +49,6 @@ class Atleta extends Model
 
     public function responsavels()
     {
-        return $this->belongsToMany(AtletaResponsavel::class, 'atleta_responsavels', 'atleta_id', 'responsavel_id');
+        return $this->belongsToMany(Responsavel::class, 'atleta_responsavels', 'atleta_id', 'responsavel_id');
     }
 }

@@ -46,6 +46,7 @@ Route::get('/chamadaSub/{id}', [AtletaController::class, 'chamadaSub']);
 Route::delete('/atleta/{id}', [AtletaController::class, 'delete']);
 Route::put('/atleta/{id}', [AtletaController::class, 'edit']);
 Route::post('/atleta', [AtletaController::class, 'create']);
+Route::get('/atletaResponsaveis/{id}', [AtletaController::class, 'responsaveis']);
 
 Route::get('/categoria/{id}', [CategoriaController::class, 'get']);
 Route::get('/categoria', [CategoriaController::class, 'list']);

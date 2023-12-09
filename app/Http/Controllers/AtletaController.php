@@ -126,4 +126,16 @@ class AtletaController extends Controller
         $atleta->save();
         return $atleta->toJson();
     }
+
+    function responsaveis(Request $request, string $id)
+{
+    // Encontre o atleta pelo ID
+    $atleta = Atleta::findOrFail($id);
+
+    // Obtenha todos os responsáveis vinculados ao atleta
+    $responsaveis = $atleta->responsavels;
+
+    return response()->json($responsaveis);
+}
+
 }
