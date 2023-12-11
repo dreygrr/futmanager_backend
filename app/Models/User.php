@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'login',
         'password',
+        'atleta_id',
+        'caminhoImagem',
         'ativo'
     ];
 
@@ -64,5 +66,9 @@ class User extends Authenticatable
 
     public function perfil() {
         return $this->belongsTo(Perfil::class, 'perfil_id');
+    }
+
+    public function atleta() {
+        return $this->belongsTo(Atleta::class, 'atleta_id');
     }
 }

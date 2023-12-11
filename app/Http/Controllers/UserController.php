@@ -8,7 +8,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     function get (Request $request, string $id) {
-        return User::all()->find($id);
+        return User::with('atleta')->find($id);
     }
 
     function me (Request $request) {
@@ -33,14 +33,26 @@ class UserController extends Controller
     }
 
     function create (Request $request) {
-        $newUser = new User();
-        $newUser->name =$request->name;
-        $newUser->login =$request->login;
-        $newUser->password =$request->password;
-        $newUser->ativo =$request->ativo;
-        $newUser->perfil_id =$request->perfil_id;
-        $newUser->save();
-        return $newUser->toJson();
+        if ($request->imagem) {
+            $dadosImagem = $request->validate([
+                'imagem' => 'required|string',
+            ]);
+
+            $imagemBase64 = $dadosImagem['imagem'];
+        } else {
+            $imagemBase64 = null;
+        }
+
+        $user = new User();
+        $user->name =$request->name;
+        $user->login =$request->login;
+        $user->password =$request->password;
+        $user->ativo =$request->ativo;
+        $user->perfil_id =$request->perfil_id;
+        $user->caminhoImagem = $imagemBase64;
+        $user->atleta_id =$request->atleta_id;
+        $user->save();
+        return $user->toJson();
     }
 
     function delete (Request $request, string $id) {
@@ -50,6 +62,16 @@ class UserController extends Controller
     }
 
     function edit (Request $request, string $id) {
+        if ($request->imagem) {
+            $dadosImagem = $request->validate([
+                'imagem' => 'required|string',
+            ]);
+
+            $imagemBase64 = $dadosImagem['imagem'];
+        } else {
+            $imagemBase64 = null;
+        }
+
         $user = User::all()->find($id);
         $user->name =$request->name;
         $user->login =$request->login;
@@ -58,6 +80,8 @@ class UserController extends Controller
         }
         $user->ativo =$request->ativo;
         $user->perfil_id =$request->perfil_id;
+        $user->caminhoImagem =$request->$imagemBase64;
+        $user->atleta_id =$request->atleta_id;
         $user->save();
         return $user->toJson();
     }
