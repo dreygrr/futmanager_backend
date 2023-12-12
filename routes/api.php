@@ -87,6 +87,7 @@ Route::post('/chamada', [ChamadaController::class, 'create']);
 
 Route::post('/presencasAtletas', [PresencasController::class, 'registrarPresencas']);
 Route::get('/presencasAtletasView/{id}', [PresencasController::class, 'visualizarPresencas']);
+Route::get('/presencasIndividual/{id}', [PresencasController::class, 'presencaAtleta']);
 
 Route::get('/advertencia/{id}', [AdvertenciaController::class, 'get']);
 Route::get('/advertencia', [AdvertenciaController::class, 'list']);

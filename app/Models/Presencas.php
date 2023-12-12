@@ -19,4 +19,9 @@ class Presencas extends Model
         'atleta_id',
         'presenca',
     ];
+
+    public function chamada()
+    {
+        return $this->belongsTo(Chamada::class, 'chamada_id');
+    }
 }

@@ -56,4 +56,32 @@ class PresencasController extends Controller
 
         return response()->json($response);
     }
+
+    function presencaAtleta(Request $request, string $atletaId)
+    {
+        // Encontre o atleta pelo ID
+        $atleta = Atleta::with('categoria')->findOrFail($atletaId);
+
+        // Obtenha todas as chamadas do atleta com as respectivas presenças
+        $presencas = Presencas::where('atleta_id', $atleta->id)->with('chamada.chamadaTipo')->get();
+
+        // Formatando a resposta
+        $response = $presencas->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'chamada_id' => $item->chamada->id,
+                'data_chamada' => $item->chamada->dataChamada,
+                'hora_chamada' => $item->chamada->horaChamada,
+                'tipo_chamada' => $item->chamada->chamadaTipo->tipoChamada,
+                'presente' => $item->presenca,
+            ];
+        });
+
+        $response = [
+            'data' => $response,
+            'atleta' => $atleta
+        ];
+
+        return response()->json($response);
+    }
 }
