@@ -14,7 +14,7 @@ class AdvertenciaController extends Controller
     function list (Request $request) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $chamadas = Advertencia::orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
+        $chamadas = Advertencia::with(['chamada', 'advertencia_tipo'])->orderBy('created_at', 'asc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $chamadas->items(),
