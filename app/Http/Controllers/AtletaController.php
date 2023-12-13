@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AtletaController extends Controller
 {
     function get (Request $request, string $id) {
-        return Atleta::find($id);
+        return Atleta::with('categoria')->find($id);
     }
 
     function list (Request $request) {
