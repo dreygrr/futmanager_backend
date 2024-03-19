@@ -29,7 +29,7 @@ class AtletaFactory extends Factory
             'numeroUniforme' => $this->faker->numberBetween(1, 40),
             'tamanhoUniforme' => $this->faker->randomElement(['P', 'M', 'G']),
             'numeroCalcado' => $this->faker->numberBetween(35, 45),
-            'caminhoImagem' => $this->faker->imageUrl(),
+            'caminhoImagem' => $this->faker->imageUrl(100, 100, $apelido),
             'user_id' => 3,
             'categoria_id' => 4,
             'ativo' => $this->faker->boolean,
