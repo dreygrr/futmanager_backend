@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignIdFor(Perfil::class)->constrained();
-            $table->renameColumn('email', 'login');
             $table->boolean('ativo');
         });
     }
@@ -27,7 +26,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('ativo');
-            $table->renameColumn('login', 'email');
             $table->dropForeignIdFor("perfil_id");
         });
     }
