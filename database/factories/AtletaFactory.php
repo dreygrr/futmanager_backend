@@ -16,9 +16,10 @@ class AtletaFactory extends Factory
      */
     public function definition(): array
     {
+        $apelido = $this->faker->word;
         return [
             'nomeCompleto' => $this->faker->name,
-            'apelido' => $this->faker->word,
+            'apelido' => $apelido,
             'dataNascimento' => $this->faker->date,
             'idade' => $this->faker->numberBetween(14, 15),
             'genero' => $this->faker->randomElement(['Masculino', 'Feminino']),
