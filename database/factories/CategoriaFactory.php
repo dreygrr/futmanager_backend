@@ -16,8 +16,8 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nm_categoria' => fake()->name(),
-            'sn_ativo' => fake()->boolean(),
+            'categoria' => fake()->name(),
+            'ativo' => fake()->boolean(),
         ];
     }
 
