@@ -38,15 +38,33 @@ class ChamadaTipoController extends Controller
 
     function delete (Request $request, string $id) {
         $chamada = ChamadaTipo::find($id);
-        $chamada->delete();
-        return $chamada->toJson();
+        if (!$chamada) {
+            return response()->json(['message' => 'Tipo de chamada não encontrado'], 404);
+        }
+        try {
+            $chamada->delete();
+            return $chamada->toJson();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Falha em deletar o registro'], 500);
+        }
     }
 
     function edit (Request $request, string $id) {
         $chamada = ChamadaTipo::find($id);
-        $chamada->tipoChamada =$request->tipoChamada;
-        $chamada->ativo =$request->ativo;
-        $chamada->save();
-        return $chamada->toJson();
+        if (!$chamada) {
+            return response()->json(['message' => 'Tipo de chamada não encontrado'], 404);
+        }
+        $validatedData = $request->validate([
+            'tipoChamada' => 'required',
+            'ativo' => 'required',
+        ]);
+        try {
+            $chamada->tipoChamada = $validatedData['tipoChamada'];
+            $chamada->ativo = $validatedData['ativo'];
+            $chamada->save();
+            return $chamada->toJson();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Falha em editar o registro'], 500);
+        }
     }
 }
