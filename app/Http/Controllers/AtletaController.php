@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Atleta;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class AtletaController extends Controller
 {
     function get (Request $request, string $id) {
-        return Atleta::with('categoria')->find($id);
+        return Atleta::where('ativo', 1,)->with('categoria')->find($id);
     }
 
     function list (Request $request) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $atletas = Atleta::orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
+        $atletas = Atleta::where('ativo', 1)::orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $atletas->items(),
@@ -31,7 +32,7 @@ class AtletaController extends Controller
     function sub (Request $request, string $id) {
         $perPage = $request->input('size', 10);
         $page = $request->input('page', 1);
-        $atletas = Atleta::where('categoria_id', $id)->orderBy('numeroUniforme', 'asc')->paginate($perPage, ['*'], 'page', $page);
+        $atletas = Atleta::where('categoria_id', $id)->where('ativo', 1)->orderBy('numeroUniforme', 'asc')->paginate($perPage, ['*'], 'page', $page);
 
         $response = [
             'data' => $atletas->items(),
@@ -47,6 +48,7 @@ class AtletaController extends Controller
 
     function chamadaSub (Request $request, string $id) {
         $atletas = Atleta::where('categoria_id', $id)
+        ->where('ativo', 1,)
         ->orderBy('numeroUniforme', 'asc')
         ->get();
 
@@ -89,8 +91,16 @@ class AtletaController extends Controller
 
     function delete (Request $request, string $id) {
         $atleta = Atleta::find($id);
-        $atleta->delete();
-        return $atleta->toJson();
+        if(!$atleta) {
+            return response()->json(['message' => 'Atleta não encontrado'], 404);
+        }
+        try {
+            $atleta->ativo = 0;
+            $atleta->save();
+            return response()->json(['message' => 'Atleta deletado com sucesso']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Falha em deletar o registro'], 500);
+        }
     }
 
     function edit (Request $request, string $id) {
