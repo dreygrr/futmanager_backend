@@ -34,6 +34,7 @@ class PerfilController extends Controller
         $perfil = new Perfil();
         $perfil->perfil =$request->perfil;
         $perfil->ativo =$request->ativo;
+        $perfil->created_at =date("Y-m-d H:i:s");
         $perfil->save();
         return $perfil->toJson();
     }
