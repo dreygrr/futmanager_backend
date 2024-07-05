@@ -31,17 +31,27 @@ class CategoriaController extends Controller
     function create (Request $request) {
 
         $dadosImagem = $request->validate([
+            'categoria' => 'required|string|unique:categorias',
             'imagem' => 'required|string',
+            'ativo' => 'required|boolean',
         ]);
 
-        $imagemBase64 = $dadosImagem['imagem'];
+        $imagemBase64 = $dadosImagem['imagem']; 
 
-        $NovaCategoria = new Categoria();
-        $NovaCategoria->categoria =$request->categoria;
-        $NovaCategoria->caminhoImagem = $imagemBase64;
-        $NovaCategoria->ativo =$request->ativo;
-        $NovaCategoria->save();
-        return $NovaCategoria->toJson();
+        $categoriaExistente = Categoria::where('categoria', $dadosImagem['categoria'])->first();
+
+        if ($categoriaExistente) {
+            return response()->json(['message' => 'Categoria já existe.'], 400);
+        }
+
+        $novaCategoria = new Categoria();
+        $novaCategoria->categoria = $dadosImagem['categoria'];
+        $novaCategoria->caminhoImagem = $imagemBase64;
+        $novaCategoria->ativo = $dadosImagem['ativo'];
+        $novaCategoria->save();
+
+        return $novaCategoria->toJson();
+        
     }
 
     function delete (Request $request, string $id) {
